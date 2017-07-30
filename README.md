@@ -10,9 +10,9 @@ First, I am a Fedora user.  For other distros, please do what is needed
 
 ## Requirements
 
-### Packages
-deluge-console: This is required to read info and do operations from deluge.
-xmlrpc: This is used to make calls to rtorrent
+### Programs
+* deluge-console: This is required to read info and do operations from deluge.
+* xmlrpc: This is used to make calls to rtorrent
 
 ### Optional
 
