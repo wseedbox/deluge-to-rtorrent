@@ -28,7 +28,7 @@ function on_exit() {
     rm -rf "${tmpdir}"
 }
 
-#trap on_exit EXIT
+trap on_exit EXIT
 
 function set_tracker {
   case $1 in
@@ -76,4 +76,4 @@ sleep 3
 $xmlrpc_command d.set_custom1 ${torrentid} ${tracker}
 $xmlrpc_command d.set_custom ${torrentid} deluge_ratio ${ratio}
 
-#/usr/bin/rm -rf $tmpdir
+/usr/bin/rm -rf $tmpdir
