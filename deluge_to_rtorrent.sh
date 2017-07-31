@@ -58,6 +58,12 @@ ratio=$($dc info $torrentid | grep Ratio: | awk -F "Ratio: " '{print $2}')
 cp ${deluge_state_dir}/${torrentid}.torrent /tmp
 
 $rtfr $torrent_download_dir ${deluge_state_dir}/${torrentid}.torrent ${tmpdir}/${torrentid}_fast.torrent
+if [[ $? -ne 0 ]]; then
+  echo "Something went wrong when converting the torrent file with $(basename ${rtfr})"
+  echo "exiting..."
+fi
+
+# remove the torrent from deluge
 $dc rm $torrentid
 
 #$rtxmlrpc load_start ${tmpdir}/${torrentid}_fast.torrent
