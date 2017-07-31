@@ -28,7 +28,7 @@ function on_exit() {
     rm -rf "${tmpdir}"
 }
 
-trap on_exit EXIT
+#trap on_exit EXIT
 
 function set_tracker {
   case $1 in
@@ -55,12 +55,13 @@ ratio=$($dc info $torrentid | grep Ratio: | awk -F "Ratio: " '{print $2}')
 #echo $ratio
 #echo $ratio_rounded_down
 
-cp ${deluge_state_dir}/${torrentid}.torrent /tmp
+cp ${deluge_state_dir}/${torrentid}.torrent ${tmpdir}
 
 $rtfr $torrent_download_dir ${deluge_state_dir}/${torrentid}.torrent ${tmpdir}/${torrentid}_fast.torrent
 if [[ $? -ne 0 ]]; then
   echo "Something went wrong when converting the torrent file with $(basename ${rtfr})"
   echo "exiting..."
+  exit 10
 fi
 
 # remove the torrent from deluge
